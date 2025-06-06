@@ -4,23 +4,13 @@ import os
 from logic import extract_pair_from_image, generate_signal, next_trade_time
 import logging
 
-# Token from environment variable
 TOKEN = os.environ.get("BOTTOKEN")
-
-# Logging setup
-logging.basicConfig(
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    level=logging.INFO
-)
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-
-# Start command
 def start(update, context):
     update.message.reply_text("👋 বট চালু হয়েছে! আপনি এখন স্ক্রিনশট পাঠাতে পারেন।")
 
-
-# Handle received photo
 def handle_photo(update, context):
     photo = update.message.photo[-1].get_file()
     photo_path = "screenshot.jpg"
@@ -42,18 +32,13 @@ def handle_photo(update, context):
 
     update.message.reply_text(response, parse_mode=ParseMode.HTML)
 
-
-# Main function to run the bot
 def main():
-    updater = Updater(TOKEN, use_context=True)
+    updater = Updater(TOKEN)
     dp = updater.dispatcher
-
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(MessageHandler(Filters.photo, handle_photo))
-
     updater.start_polling()
     updater.idle()
-
 
 if __name__ == '__main__':
     main()
