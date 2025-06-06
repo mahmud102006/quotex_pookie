@@ -1,6 +1,6 @@
 services:
-  - type: web
-    name: your-app-name
+  - type: worker
+    name: quotex-bot-highlogic
     env: python
     buildCommand: |
       apt-get update && apt-get install -y tesseract-ocr
