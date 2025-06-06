@@ -1,0 +1,9 @@
+services:
+  - type: worker
+    name: quotex-bot-highlogic
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    envVars:
+      - key: BOTTOKEN
+        value: "7760048057:AAEzbOZK-PEOkKysDKLPlC3EO1LV20882gM"
