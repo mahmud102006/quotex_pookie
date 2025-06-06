@@ -1,9 +1,8 @@
 services:
-  - type: worker
-    name: quotex-bot-highlogic
+  - type: web
+    name: your-app-name
     env: python
-    buildCommand: pip install -r requirements.txt
+    buildCommand: |
+      apt-get update && apt-get install -y tesseract-ocr
+      pip install -r requirements.txt
     startCommand: python main.py
-    envVars:
-      - key: BOTTOKEN
-        value: 7760048057:AAEzbOZK-PEOkKysDKLPlC3EO1LV20882gM
